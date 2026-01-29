@@ -1,4 +1,4 @@
-# SockeTest
+# SocketTest
 ## Code on laptop
 
 `randomData.C` - generates random 1K data `data.bin`  
