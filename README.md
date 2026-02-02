@@ -22,6 +22,7 @@ rm -rf *
 ```
 cd bin
 javac ../Test.java -d .
+javac ../Test2.java -d .
 ```
 
 ### Output C
@@ -29,7 +30,7 @@ javac ../Test.java -d .
 ./randomData
 Successfully created 'data.bin' with 1024 bytes of random data.
 
-(In Seperate Terminal)
+(In Seperate Terminal) #Run before every test
 nc -l 8080
 
 ./test
@@ -39,10 +40,15 @@ Sendfile Latency:   792 ns
 
 ### Output Java
 ```
-(In Seperate Terminal)
+(In Seperate Terminal) #Run before every test
 nc -l 8080
 
 java Test 
 Connection Latency: 520780 ns
 TransferTo Latency: 254494 ns
+
+java Test2 
+Warming up JIT compiler...
+Connection Latency: 309802 ns
+Optimized Transfer Latency: 171436 ns
 ```
