@@ -1,54 +1,11 @@
 # SocketTest
-## Code on laptop
 
-`randomData.C` - generates random 1K data `data.bin`  
-`test.C` - prints out latency of socketSend  
+Low-level Java/C experiments exploring performance and numeric precision.
 
-`nc` - linux utility to listen
+## Projects
 
-### Build C
-```
-# Build
-mkdir -p bin
-cd bin
-cmake ..
-make
+### [SocketLatency](./SocketLatency/)
+Benchmarks TCP socket send latency for 1KB of data, comparing C (`sendfile`) vs Java (`FileChannel.transferTo`). Explores techniques like CPU pinning, `TCP_NODELAY`, zero-copy transfers, and JIT warmup.
 
-# Clean
-rm -rf *
-```
-
-### Build Java
-```
-cd bin
-javac ../Test.java -d .
-javac ../Test2.java -d .
-```
-
-### Output C
-```
-./randomData
-Successfully created 'data.bin' with 1024 bytes of random data.
-
-(In Seperate Terminal) #Run before every test
-nc -l 8080
-
-./test
-Connection Latency: 46418 ns
-Sendfile Latency:   792 ns
-```
-
-### Output Java
-```
-(In Seperate Terminal) #Run before every test
-nc -l 8080
-
-java Test 
-Connection Latency: 520780 ns
-TransferTo Latency: 254494 ns
-
-java Test2 
-Warming up JIT compiler...
-Connection Latency: 309802 ns
-Optimized Transfer Latency: 171436 ns
-```
+### [PrecisionDemo](./PrecisionDemo/)
+Demonstrates `BigDecimal` precision loss when a `double` is used at any point in an otherwise-exact chain. Shows why `new BigDecimal("0.3")` and `new BigDecimal(0.3)` are not the same thing.
